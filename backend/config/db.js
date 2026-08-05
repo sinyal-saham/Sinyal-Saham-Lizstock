@@ -1,24 +1,22 @@
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'lizstock_db',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+// Membuat connection pool menggunakan URL dari Neon.tech
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // Wajib diaktifkan untuk koneksi SSL Neon.tech
+  }
 });
 
-// Tes koneksi database MySQL
-pool.getConnection()
-  .then(conn => {
-    console.log('Database MySQL Localhost Connected!');
-    conn.release();
+// Tes koneksi database PostgreSQL Neon.tech
+pool.connect()
+  .then(client => {
+    console.log('Database PostgreSQL Neon.tech Connected!');
+    client.release();
   })
   .catch(err => {
-    console.error('Koneksi MySQL Gagal:', err.message);
+    console.error('Koneksi PostgreSQL Neon Gagal:', err.message);
   });
 
 module.exports = pool;
