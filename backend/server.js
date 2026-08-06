@@ -1,5 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const app = express();
+
+// Izinkan akses dari mana saja (termasuk Vercel)
+app.use(cors());
+
+app.use(express.json());
 require('dotenv').config();
 
 // Impor koneksi database PostgreSQL (Neon.tech)
