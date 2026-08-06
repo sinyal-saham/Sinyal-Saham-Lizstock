@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Gunakan Environment Variable atau fallback ke domain Railway (wajib pakai https://)
-const BASE_URL = process.env.REACT_APP_API_URL || "https://sinyal-saham-lizstock-production.up.railway.app/api";
+// Langsung arahkan ke Railway
+const BASE_URL = "https://sinyal-saham-lizstock-production.up.railway.app/api";
 
 // Buat instance axios
 const API = axios.create({
