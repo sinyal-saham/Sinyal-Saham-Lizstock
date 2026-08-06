@@ -4,7 +4,7 @@ import axios from 'axios';
 // const API_URL = "http://localhost:5000/api";
 
 // CONTOH YANG BENAR:
-const API_URL = process.env.REACT_APP_API_URL || "https://lizstock-backend-production.up.railway.app/api";
+const API_URL = process.env.REACT_APP_API_URL || "sinyal-saham-lizstock-production.up.railway.app/api";
 
 export default API_URL;
 
