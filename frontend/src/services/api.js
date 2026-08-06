@@ -1,18 +1,14 @@
 import axios from 'axios';
 
-<<<<<<< Updated upstream
-// CONTOH YANG SALAH (Penyebab ERR_CONNECTION_REFUSED):
-// const API_URL = "http://localhost:5000/api";
+// Gunakan Environment Variable atau fallback ke domain Railway (wajib pakai https://)
+const BASE_URL = process.env.REACT_APP_API_URL || "https://sinyal-saham-lizstock-production.up.railway.app/api";
 
-// CONTOH YANG BENAR:
-const API_URL = process.env.REACT_APP_API_URL || "sinyal-saham-lizstock-production.up.railway.app/api";
+// Buat instance axios
+const API = axios.create({
+  baseURL: BASE_URL,
+});
 
-export default API_URL;
-=======
-const API_URL = process.env.REACT_APP_API_URL || "sinyal-saham-lizstock-production.up.railway.app/api";
->>>>>>> Stashed changes
-
-export default API_URL;
+// Interceptor untuk menyisipkan Token JWT pada setiap request
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
